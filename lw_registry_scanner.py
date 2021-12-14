@@ -31,7 +31,7 @@ def _get_docker_images(customer_registry_name, reader) -> List[DockerImage]:
     return supported_entries
 
 
-def _get_supported_images(filename, customer_registry_name):
+def _get_supported_images(filename, customer_registry_name) -> List[DockerImage]:
     with open(filename, 'r') as file:
         reader = csv.reader(file)
         next(reader)
@@ -41,7 +41,7 @@ def _get_supported_images(filename, customer_registry_name):
     return supported_images
 
 
-def run_scan(profile_name, supported_images):
+def run_scan(profile_name, supported_images) -> None:
     for image in supported_images:
         registry = image.registry
         repository = image.repository
@@ -54,7 +54,7 @@ def run_scan(profile_name, supported_images):
         print(output)
 
 
-def main():
+def main() -> None:
     profile_name = argv[1]
     filename = argv[2]
     customer_registry_name = argv[3]
